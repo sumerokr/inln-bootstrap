@@ -1,0 +1,16 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.ClientModel>
+
+@{
+    ViewBag.Title = "Наши клиенты";
+}
+
+<h2>Наши клиенты</h2>
+<p>Перечень самых известных клиентов. Полный список наших клиентов Вы можете посмотреть в разделе Портфолио.</p>
+<div class="row">
+    @foreach (inln_bootstrap.Areas.Admin.Models.ClientModel client in Model)
+    {
+    <div class="span3" style="margin-bottom: 30px;">
+        <img class="popovers" src="@Url.Content(client.Logo)" width="220" height="100" alt="@client.LogoAlt" title="@client.LogoTitle" data-content="@client.Description" />
+    </div>
+    }
+</div>

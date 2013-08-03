@@ -1,0 +1,41 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.ClientModel>
+
+@{
+    ViewBag.Title = "Список клиентов";
+}
+
+<p>@Html.ActionLink("Добавить клиента", "Create", null, new { @class = "btn btn_primary" }) @Html.ActionLink("Перейти к сортировке", "Order", null, new { @class = "btn" })</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Logo)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.IsVisible)</th>
+            <th>@Html.DisplayNameFor(model => model.IsSpecial)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @if (!String.IsNullOrEmpty(item.Logo))
+                {
+                <img src="@Url.Content(item.Logo)" width="140" height="80" alt="@item.LogoAlt" title="@item.LogoTitle" /> 
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.IsVisible)</td>
+            <td>@Html.DisplayFor(modelItem => item.IsSpecial)</td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.ClientId })<br />
+                @Html.ActionLink("Добавить проект", "Create", "Project", new { id = item.ClientId }, null)<br />
+                @Html.ActionLink("Посмотреть", "Details", new { id = item.ClientId })<br />
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ClientId })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

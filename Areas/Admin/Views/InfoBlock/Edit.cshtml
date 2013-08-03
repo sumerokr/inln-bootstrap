@@ -1,0 +1,76 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.InfoBlockModel
+
+@{
+    ViewBag.Title = "Редактирование инфо-блока";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Данные инфо-блока</legend>
+
+        @Html.HiddenFor(model => model.InfoBlockId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsVisible)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsVisible)
+            @Html.ValidationMessageFor(model => model.IsVisible)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Image)
+        </div>
+        <div class="editor-field">
+            @if (!String.IsNullOrEmpty(Model.Image))
+            {
+            <img src="@Url.Content(Model.Image)" width="140" height="80" alt="" />
+            }
+            <input type="file" name="imageFile" id="Image" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageAlt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageAlt)
+            @Html.ValidationMessageFor(model => model.ImageAlt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageTitle)
+            @Html.ValidationMessageFor(model => model.ImageTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageToDelete)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageToDelete)
+            @Html.ValidationMessageFor(model => model.ImageToDelete)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn_primary" value="Сохранить" />
+            @Html.ActionLink("Вернуться к списку", "Index", new { id = Model.ProjectId }, new { @class = "btn" })
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

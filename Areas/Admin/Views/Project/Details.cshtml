@@ -1,0 +1,124 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.ProjectModel
+
+@{
+    ViewBag.Title = "Детали проекта";
+}
+
+<fieldset>
+    <legend>Информация о проекте</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ProjectId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Guid)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Guid)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.EntryCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntryCreated)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IsVisible)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsVisible)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UrlAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UrlAddress)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Logo)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.Logo))
+        {
+        <img src="@Url.Content(Model.Logo)" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.MainImage)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.MainImage))
+        {
+        <img src="@Url.Content(Model.GetThumb(Model.MainImage, 140, 80))" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IsSpecial)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsSpecial)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.SliderImage)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.SliderImage))
+        {
+        <img src="@Url.Content(Model.GetThumb(Model.SliderImage, 140, 80))" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IntroText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IntroText)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FullText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullText)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ResponseImage)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.ResponseImage))
+        {
+        <img src="@Url.Content(Model.GetThumb(Model.ResponseImage, 140, 80))" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClientId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClientId)
+    </div>
+</fieldset>
+
+<div class="form-actions">
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ProjectId }, new { @class = "btn btn_primary" })
+    @Html.ActionLink("Вернуться к списку", "Index", null, new { @class = "btn" })
+</div>

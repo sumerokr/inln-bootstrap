@@ -1,0 +1,37 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.InfoBlockModel>
+
+@{
+    ViewBag.Title = "Список инфо-блоков";
+}
+
+<p>@Html.ActionLink("Добавить инфо-блок", "Create", new { id = ViewBag.ProjectId }, new { @class = "btn btn_primary" })</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Image)</th>
+            <th>@Html.DisplayNameFor(model => model.IsVisible)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @if (!String.IsNullOrEmpty(item.Image))
+                {
+                <img src="@Url.Content(item.Image)" width="140" height="80" alt="@item.ImageAlt" title="@item.ImageTitle" /> 
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.IsVisible)</td>
+            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.InfoBlockId })<br />
+                @Html.ActionLink("Посмотреть", "Details", new { id = item.InfoBlockId })<br />
+                @Html.ActionLink("Удалить", "Delete", new { id = item.InfoBlockId })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

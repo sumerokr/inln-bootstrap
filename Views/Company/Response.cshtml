@@ -1,0 +1,27 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.ProjectModel>
+
+@{
+    ViewBag.Title = "Отзывы клиентов";
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/fancybox")
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/fancybox")
+}
+
+<h2>Отзывы клиентов</h2>
+<div class="row">
+    @foreach (inln_bootstrap.Areas.Admin.Models.ProjectModel project in Model)
+    {
+    <div class="span3" style="margin-bottom: 30px;">
+        <h4>@project.Name</h4>
+        <p><a href="@project.UrlAddress" target="_blank">@project.UrlAddress</a></p>
+        <a href="@Url.Content(project.ResponseImage)" class="fancybox thumbnail"><img src="@Url.Content(project.GetThumb(project.ResponseImage, 210, 300))"width="210" height="300" alt="@project.ResponseImageAlt" title="@project.ResponseImageTitle" /></a>
+    </div>
+    }
+</div>

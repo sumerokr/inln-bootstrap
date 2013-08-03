@@ -1,0 +1,87 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.ClientModel
+
+@{
+    ViewBag.Title = "Информация о клиенте";
+}
+
+<fieldset>
+    <legend>Данные клиента</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ClientId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClientId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Guid)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Guid)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.EntryCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntryCreated)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IsVisible)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsVisible)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Logo)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.Logo))
+        {
+        <img src="@Url.Content(Model.Logo)" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.LogoUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LogoUrl)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IsSpecial)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsSpecial)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Order)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Order)
+    </div>
+</fieldset>
+
+<div class="form-actions">
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ClientId }, new { @class = "btn btn_primary" })
+    @Html.ActionLink("Вернуться к списку", "Index", null, new { @class = "btn" })
+</div>

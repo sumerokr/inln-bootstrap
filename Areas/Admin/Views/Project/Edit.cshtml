@@ -1,0 +1,150 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.ProjectModel
+
+@{
+    ViewBag.Title = "Редактирование проекта";
+}
+
+@using (Html.BeginForm("Edit", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Данные проекта</legend>
+
+        @Html.HiddenFor(model => model.ProjectId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsVisible)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsVisible)
+            @Html.ValidationMessageFor(model => model.IsVisible)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UrlAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UrlAddress)
+            @Html.ValidationMessageFor(model => model.UrlAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+            @if (!String.IsNullOrEmpty(Model.Logo))
+            {
+            <img src="@Url.Content(Model.Logo)" width="140" height="80" alt="" />
+            }
+            <input type="file" name="logoFile" id="Logo" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LogoToDelete)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LogoToDelete)
+            @Html.ValidationMessageFor(model => model.LogoToDelete)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MainImage)
+        </div>
+        <div class="editor-field">
+            @if (!String.IsNullOrEmpty(Model.MainImage))
+            {
+            <img src="@Url.Content(Model.GetThumb(Model.MainImage, 140, 80))" width="140" height="80" alt="" />
+            }
+            <input type="file" name="mainFile" id="MainImage" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MainImageToDelete)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MainImageToDelete)
+            @Html.ValidationMessageFor(model => model.MainImageToDelete)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsSpecial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsSpecial)
+            @Html.ValidationMessageFor(model => model.IsSpecial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SliderImage)
+        </div>
+        <div class="editor-field">
+            @if (!String.IsNullOrEmpty(Model.SliderImage))
+            {
+            <img src="@Url.Content(Model.GetThumb(Model.SliderImage, 140, 80))" width="140" height="80" alt="" />
+            }
+            <input type="file" name="sliderFile" id="SliderImage" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SliderImageToDelete)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SliderImageToDelete)
+            @Html.ValidationMessageFor(model => model.SliderImageToDelete)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IntroText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IntroText)
+            @Html.ValidationMessageFor(model => model.IntroText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FullText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FullText)
+            @Html.ValidationMessageFor(model => model.FullText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResponseImage)
+        </div>
+        <div class="editor-field">
+            @if (!String.IsNullOrEmpty(Model.ResponseImage))
+            {
+            <img src="@Url.Content(Model.GetThumb(Model.ResponseImage, 140, 80))" width="140" height="80" alt="" />
+            }
+            <input type="file" name="responseFile" id="ResponseImage" />
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResponseImageToDelete)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResponseImageToDelete)
+            @Html.ValidationMessageFor(model => model.ResponseImageToDelete)
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn_primary" value="Сохранить" />
+            @Html.ActionLink("Вернуться к списку", "Index", null, new { @class = "btn" })
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

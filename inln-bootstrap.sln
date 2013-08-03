@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "inln-bootstrap", ".", "{D3A9F848-E258-4D98-BF8A-578E93EF67C0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/inln-bootstrap"
+		Debug.AspNetCompiler.PhysicalPath = "D:\repository\inln-bootstrap\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\inln-bootstrap\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/inln-bootstrap"
+		Release.AspNetCompiler.PhysicalPath = "D:\repository\inln-bootstrap\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\inln-bootstrap\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "4886"
+		VWDDynamicPort = "false"
+		VWDVirtualPath = "/"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3A9F848-E258-4D98-BF8A-578E93EF67C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A9F848-E258-4D98-BF8A-578E93EF67C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

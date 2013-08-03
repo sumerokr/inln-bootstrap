@@ -1,0 +1,49 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.ProjectModel>
+
+@{
+    ViewBag.Title = "Наши работы";
+}
+
+<h2>Наши работы</h2>
+<p>Компания Инлайн предлагает полный комплекс услуг по разработке Internet-сайтов, корпоративных порталов, приложений Facebook и информационных систем на основе новейших технологии Microsoft - ASP.NET, SharePoint и Silverlight. Уже 6 лет мы предлагаем нашим клиентам новейшие технологии Microsoft и отлаженное управление проектами по стандартам PMI. Это позволяет нам в кратчайшие сроки разрабатывать надежные Internet-решения и информационные системы любой сложности, работающие 24 часа 7 дней в неделю. Для ведения современного, высокодоходного и эффективного бизнеса очень важны надежность и качество Internet решений. Именно это и отличает Microsoft ASP.NET. А Microsoft SharePoint является фактическим стандартом при создании корпоративных порталов.</p>
+<p>В нашей компании работают профессионалы, способные разрабатывать проекты любой степени сложности: интернет-магазины, сайты-визитки, интернет-порталы, корпоративные порталы на Microsoft SharePoint Server, промо-сайты с использованием технологии Silverlight и оказывает профессиональный консалтинг с интернет-маркетингом. Благодаря собственным разработкам, многолетнему опыту и использованию новейших IT технологий Microsoft мы создаем решения для роста доходности компаний наших клиентов. Для разработки корпоративных порталов мы используем передовую разработку компании Microsoft - SharePoint Server. Корпоративный портал позволяет организовать совместную работу сотрудников компании, доступ к важной деловой информации, осуществлять поиск и анализ бизнес-информации. Корпоративный портал позволяет даже небольшим и средним компаниям в кратчайшие сроки оптимизировать бизнес-процессы и увеличить свою эффективность.</p>
+<p>На 12 июня 2013 года в нашем портфолио 186 работ - Internet-сайты, Internet-магазины, flash-ролики и информационные системы.</p>
+
+<hr />
+
+<div class="btn-group">
+    <button class="btn" data-action="next" disabled="disabled">Позже</button>
+    <button class="btn" data-action="prev">Раньше</button>
+</div>
+
+<hr />
+
+<ul class="thumbnails">
+    @foreach (inln_bootstrap.Areas.Admin.Models.ProjectModel project in Model)
+    {
+    <li class="span6">
+        <div class="thumbnail">
+            <a href="@Url.Content("~/web/project/" + @project.Guid)"><img src="@Url.Content(project.GetThumb(project.MainImage, 450, 350))" width="450" height="350" alt="@project.MainImageAlt" title="@project.MainImageTitle" /></a>
+            <div class="caption">
+                <h3><a href="@Url.Content("~/web/project/" + @project.Guid)">@project.Name</a></h3>
+                @if (project.IntroText.Count() > 200)
+                {
+                    <p>@project.IntroText.Substring(0, 170)</p>
+                }
+                else
+                {
+                    <p>@project.IntroText</p>
+                }
+                <p><a class="btn" href="@project.UrlAddress" target="_blank">Посмотреть сайт</a></p>
+            </div>
+        </div>
+    </li>
+    }
+</ul>
+
+<hr />
+
+<div class="btn-group">
+    <button class="btn" data-action="next" disabled="disabled">Позже</button>
+    <button class="btn" data-action="prev">Раньше</button>
+</div>

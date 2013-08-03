@@ -1,0 +1,37 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.ProjectModel
+
+@{
+    ViewBag.Title = "Удаление проекта";
+}
+
+<h2>Вы действительно хотите удалить проект?</h2>
+
+<fieldset>
+    <legend>Данные проекта</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Logo)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.Logo))
+        {
+        <img src="@Url.Content(Model.Logo)" width="140" height="80" alt="" />
+        }
+    </div>
+</fieldset>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-actions">
+        <input type="submit" class="btn btn_primary" value="Удалить" />
+        @Html.ActionLink("Вернуться к списку", "Index", null, new { @class = "btn" })
+    </div>
+}

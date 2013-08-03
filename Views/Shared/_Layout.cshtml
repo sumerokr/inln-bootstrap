@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrap")
+    @RenderSection("styles", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        @Html.Partial("_Header")
+
+        @RenderSection("slider", required: false)
+        
+        <div class="row">
+            <div class="span12">
+                @RenderBody()
+            </div>
+        </div>
+
+        <hr />
+
+        @RenderSection("clients", required: false)
+
+        @RenderSection("departments", required: false)
+
+        @RenderSection("twitter", required: false)
+
+        @Html.Partial("_Footer")
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/main")
+</body>
+</html>

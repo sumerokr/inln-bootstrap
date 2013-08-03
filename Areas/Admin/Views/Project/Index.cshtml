@@ -1,0 +1,40 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.ProjectModel>
+
+@{
+    ViewBag.Title = "Список проектов";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Logo)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.IsVisible)</th>
+            <th>@Html.DisplayNameFor(model => model.IsSpecial)</th>
+            <th>@Html.DisplayNameFor(model => model.UrlAddress)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @if (!String.IsNullOrEmpty(item.Logo))
+                    {
+                    <img src="@Url.Content(item.Logo)" width="140" height="80" alt="@item.LogoAlt" title="@item.LogoTitle" /> 
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsVisible)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsSpecial)</td>
+                <td>@Html.DisplayFor(modelItem => item.UrlAddress)</td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.ProjectId })<br />
+                    @Html.ActionLink("Перейти к инфо-блокам", "Index", "InfoBlock", new { id = item.ProjectId }, null)<br />
+                    @Html.ActionLink("Посмотреть", "Details", new { id = item.ProjectId })<br />
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ProjectId })<br />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

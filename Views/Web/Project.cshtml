@@ -1,0 +1,62 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.ProjectModel
+
+@{
+    ViewBag.Title = Model.Name;
+    int counter = 0;
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/fancybox")
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/fancybox")
+}
+
+<h2>@Model.Name</h2>
+
+<p><a href="@Url.Content("~/web/portfolio")">Вернуться в портфолио</a></p>
+
+<p>@Model.IntroText</p>
+<p>@Model.FullText</p>
+
+<hr />
+
+<div class="thumbnail"><img src="@Url.Content(Model.MainImage)" width="930" height="1170" alt="@Model.MainImageAlt" title="@Model.MainImageTitle" /></div>
+
+<hr />
+
+@foreach (inln_bootstrap.Areas.Admin.Models.InfoBlockModel infoBlock in Model.InfoBlocks)
+{
+    if (counter % 2 == 0)
+    {
+    <div class="row">
+        <div class="span6">
+            <a class="fancybox thumbnail" href="@Url.Content(infoBlock.Image)"><img src="@Url.Content(infoBlock.Image)" width="450" height="300" alt="@infoBlock.ImageAlt" title="@infoBlock.ImageTitle" /></a>
+        </div>
+        <div class="span6">
+            @infoBlock.Description
+        </div>
+    </div>
+
+    <hr />
+    }
+    else
+    {
+    <div class="row">
+        <div class="span6">
+            @infoBlock.Description
+        </div>
+        <div class="span6">
+            <a class="fancybox thumbnail" href="@Url.Content(@infoBlock.Image)"><img src="@Url.Content(infoBlock.Image)" width="450" height="300" alt="@infoBlock.ImageAlt" title="@infoBlock.ImageTitle" /></a>
+        </div>
+    </div>
+
+    <hr />
+    }
+counter++;
+}
+
+<p><a href="@Url.Content("~/web/portfolio")">Вернуться в портфолио</a></p>

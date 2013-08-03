@@ -1,0 +1,22 @@
+﻿@model IEnumerable<inln_bootstrap.Areas.Admin.Models.ClientModel>
+
+<div class="row">
+    <div class="span12">
+        <h3><a href="#">Наши клиенты</a></h3>
+        <div class="row">
+            @foreach (inln_bootstrap.Areas.Admin.Models.ClientModel client in Model)
+            {
+                <div class="span2"><a href="@client.LogoUrl"><img src="@Url.Content(client.Logo)" width="140" height="80" alt="@client.LogoAlt" title="@client.LogoTitle" /></a></div>
+            }
+            <div class="span12">
+                <br />
+                <div class="btn-group">
+                    <button class="btn">‹</button>
+                    <button class="btn">›</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />

@@ -1,0 +1,73 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.InfoBlockModel
+
+@{
+    ViewBag.Title = "Информация об инфо-блоке";
+}
+
+<fieldset>
+    <legend>Данные инфо-блока</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.InfoBlockId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.InfoBlockId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.EntryCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntryCreated)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IsVisible)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsVisible)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Image)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.Image))
+        {
+        <img src="@Url.Content(Model.GetThumb(Model.Image, 140, 80))" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ImageAlt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ImageAlt)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ImageTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ImageTitle)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ProjectId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectId)
+    </div>
+</fieldset>
+
+<div class="form-actions">
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.InfoBlockId }, new { @class = "btn btn_primary" })
+    @Html.ActionLink("Вернуться к списку", "Index", new { id = Model.ProjectId }, new { @class = "btn" })
+</div>

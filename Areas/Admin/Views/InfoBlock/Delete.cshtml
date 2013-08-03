@@ -1,0 +1,37 @@
+﻿@model inln_bootstrap.Areas.Admin.Models.InfoBlockModel
+
+@{
+    ViewBag.Title = "Удаление инфо-блока";
+}
+
+<h2>Вы действительно хотите удалить инфо-блок?</h2>
+
+<fieldset>
+    <legend>Данные инфо-блока</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Image)
+    </div>
+    <div class="display-field">
+        @if (!String.IsNullOrEmpty(Model.Image))
+        {
+        <img src="@Url.Content(Model.GetThumb(Model.Image, 140, 80))" width="140" height="80" alt="" />
+        }
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-actions">
+        <input type="submit" class="btn btn_primary" value="Удалить" />
+        @Html.ActionLink("Вернуться к списку", "Index", new { id = Model.ProjectId }, new { @class = "btn" })
+    </div>
+}
