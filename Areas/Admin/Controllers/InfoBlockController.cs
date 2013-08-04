@@ -30,13 +30,20 @@ namespace inln_bootstrap.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(int id, InfoBlockModel infoBlock, HttpPostedFileBase imageFile)
         {
-            infoBlock.ProjectId = id;
-            infoBlock.EntryCreated = DateTime.Now;
-            infoBlock.Image = Utils.FileManager.UploadFile(imageFile, "Projects", infoBlock.Project.Guid);
-            db.Entry(infoBlock).State = EntityState.Added;
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                infoBlock.ProjectId = id;
+                infoBlock.EntryCreated = DateTime.Now;
+                infoBlock.Image = Utils.FileManager.UploadFile(imageFile, "Projects", infoBlock.Project.Guid);
+                db.Entry(infoBlock).State = EntityState.Added;
+                db.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Edit(int id)
@@ -49,23 +56,30 @@ namespace inln_bootstrap.Areas.Admin.Controllers
         public ActionResult Edit(InfoBlockModel infoBlock, HttpPostedFileBase imageFile)
         {
             InfoBlockModel dbInfoBlock = db.InfoBlocks.Find(infoBlock.InfoBlockId);
-            infoBlock.EntryCreated = dbInfoBlock.EntryCreated;
-
-            if (infoBlock.ImageToDelete == false)
+            if (ModelState.IsValid)
             {
-                infoBlock.Image = Utils.FileManager.UpdateFile(dbInfoBlock.Image, imageFile, "Projects", dbInfoBlock.Project.Guid);
+                infoBlock.EntryCreated = dbInfoBlock.EntryCreated;
+
+                if (infoBlock.ImageToDelete == false)
+                {
+                    infoBlock.Image = Utils.FileManager.UpdateFile(dbInfoBlock.Image, imageFile, "Projects", dbInfoBlock.Project.Guid);
+                }
+                else
+                {
+                    infoBlock.Image = Utils.FileManager.DeleteFile(dbInfoBlock.Image);
+                    infoBlock.ImageToDelete = false;
+                }
+
+                db.Entry(dbInfoBlock).State = EntityState.Detached;
+                db.Entry(infoBlock).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
             }
             else
             {
-                infoBlock.Image = Utils.FileManager.DeleteFile(dbInfoBlock.Image);
-                infoBlock.ImageToDelete = false;
+                return View(dbInfoBlock);
             }
-
-            db.Entry(dbInfoBlock).State = EntityState.Detached;
-            db.Entry(infoBlock).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)

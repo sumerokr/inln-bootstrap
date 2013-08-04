@@ -28,13 +28,20 @@ namespace inln_bootstrap.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(ClientModel client, HttpPostedFileBase file)
         {
-            client.EntryCreated = DateTime.Now;
-            client.Guid = Guid.NewGuid();
-            client.Logo = Utils.FileManager.UploadFile(file, "Clients", client.Guid, "logo");
-            db.Entry(client).State = EntityState.Added;
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                client.EntryCreated = DateTime.Now;
+                client.Guid = Guid.NewGuid();
+                client.Logo = Utils.FileManager.UploadFile(file, "Clients", client.Guid, "logo");
+                db.Entry(client).State = EntityState.Added;
+                db.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Edit(int id)
@@ -48,24 +55,31 @@ namespace inln_bootstrap.Areas.Admin.Controllers
         public ActionResult Edit(ClientModel client, HttpPostedFileBase file)
         {
             ClientModel dbClient = db.Clients.Find(client.ClientId);
-            client.EntryCreated = dbClient.EntryCreated;
-            client.Guid = dbClient.Guid;
-
-            if (client.LogoToDelete == false)
+            if (ModelState.IsValid)
             {
-                client.Logo = Utils.FileManager.UpdateFile(dbClient.Logo, file, "Clients", dbClient.Guid, "logo");
+                client.EntryCreated = dbClient.EntryCreated;
+                client.Guid = dbClient.Guid;
+
+                if (client.LogoToDelete == false)
+                {
+                    client.Logo = Utils.FileManager.UpdateFile(dbClient.Logo, file, "Clients", dbClient.Guid, "logo");
+                }
+                else
+                {
+                    client.Logo = Utils.FileManager.DeleteFile(dbClient.Logo);
+                    client.LogoToDelete = false;
+                }
+
+                db.Entry(dbClient).State = EntityState.Detached;
+                db.Entry(client).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
             }
             else
             {
-                client.Logo = Utils.FileManager.DeleteFile(dbClient.Logo);
-                client.LogoToDelete = false;
+                return View(dbClient);
             }
-
-            db.Entry(dbClient).State = EntityState.Detached;
-            db.Entry(client).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
@@ -100,7 +114,7 @@ namespace inln_bootstrap.Areas.Admin.Controllers
             return View(clients);
         }
 
-        public void OrderSave(int[] client) //3, 1, 2, 10, 15...
+        public void OrderSave(int[] client)
         {
             int counter = 1;
             ClientModel tempClient;
