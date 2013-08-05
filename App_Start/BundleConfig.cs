@@ -37,7 +37,7 @@ namespace inln_bootstrap
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                 "~/Content/bootstrap.css",
-                "~/Content/main.css"));
+                "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/site").Include(
                 "~/Content/normalize.css",

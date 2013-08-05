@@ -1,2 +1,101 @@
 /* Author's custom styles */
 
+.github-issue
+{
+    position: fixed;
+    background-color: #eee;
+    top: 10%;
+    right: -126px;
+    padding: 15px;
+    width: 150px;
+    white-space: nowrap;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    -webkit-animation: myanim 2s infinite;
+    -moz-animation: myanim 2s infinite;
+    -o-animation: myanim 2s infinite;
+    animation: myanim 2s infinite;
+    -webkit-box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.github-issue__icon
+{
+    display: inline-block;
+    border: 2px solid #222;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    color: #222;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.github-issue:hover
+{
+    right: 0;
+}
+
+@-webkit-keyframes myanim
+{
+    50%
+    {
+        -webkit-box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+    }
+
+    100%
+    {
+        -webkit-box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@-moz-keyframes myanim
+{
+    50%
+    {
+        -webkit-box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+    }
+
+    100%
+    {
+        -webkit-box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@-o-keyframes myanim
+{
+    50%
+    {
+        -webkit-box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+    }
+
+    100%
+    {
+        -webkit-box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@keyframes myanim
+{
+    50%
+    {
+        -webkit-box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.75);
+    }
+
+    100%
+    {
+        -webkit-box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+}
