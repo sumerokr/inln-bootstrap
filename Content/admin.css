@@ -210,6 +210,13 @@ legend
     min-height: 95px;
 }
 
+.hint-block
+{
+    margin: 10px 0 0;
+    color: #666;
+    font-size: 12px;
+}
+
 .input-validation-error
 {
     outline-color: #f00;
